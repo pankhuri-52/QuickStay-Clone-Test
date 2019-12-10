@@ -1,12 +1,10 @@
 var express = require('express')
 var path = require('path')
 var app = express()
+var session = require('express-session')
+var multer = require('multer');
 var alert = require('alert-node')
 var fs = require('fs');
-
-var session = require('express-session')
-var nodemailer = require('nodemailer');
-var multer = require('multer');
 
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.static(path.join(__dirname,'public/uploads')));
@@ -15,7 +13,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.use(session({
-  secret: "LifeIsSad",
+  secret: "WubbaLubbaDubDub",
   resave: false,
   saveUnintialized: true,
 }))
@@ -39,28 +37,23 @@ mongoose.connection.on('connected',(err) => {
 })
 
 var userSchema = new mongoose.Schema({
-    fullname: String,
-    phone: String,
+    name: String,
+    number: String,
     email: String,
     password: String,
 })
 
 var user = mongoose.model('users', userSchema);
 
-app.get('/',function(req,res)
-  {
-      res.render('signin');
-  })
-
-app.get('/adduser',logger,function(req,res)
+app.get('/signup',logger,function(req,res)
 {
-    res.render('adduser',{obj : req.session.data , exists:exists});
+    res.render('signup',{obj : req.session.data , exists:exists});
     exists=0;
 })
 
-app.post('/adduser',function(req,res)
+app.post('/signup',function(req,res)
 {
-    exists = 0;
+   exists = 0;
     var obj = req.body;
     user.find({
       email: req.body.email,
@@ -69,21 +62,20 @@ app.post('/adduser',function(req,res)
     {
         if(data.length != 0){
           exists = 1;
-          res.redirect('/adduser')
+          res.redirect('/signup')
         }
         else{
             user.create(obj,function(error,result){
                 if(error)
                     throw err;
             })
-            alert("Sign Up Succesfull");
+            alert("Congratulations You signed Up successfully");
             res.sendFile(path.join(__dirname + '/public/index.html'));  
         }
     });
 });
 
-app.post('/signin',function(req,res){
-  console.log(req.body)
+app.post('/login',function(req,res){
     user.find({
         email: req.body.email,
         password: req.body.password
@@ -91,7 +83,7 @@ app.post('/signin',function(req,res){
       .then(data =>
         {
           if(data.length > 0){
-            req.session.fullname = data[0].fullname
+            req.session.name = data[0].name
             res.send("1");
           }
           else{
@@ -128,7 +120,7 @@ var storage = multer.diskStorage({
  
 var upload = multer({ storage: storage })
 
-app.post('/uploadFile', upload.single('myFile'), (req, res) => {
+app.post('/uploadProject', upload.single('myFile'), (req, res) => {
   console.log(req.body);
   var file = req.file
   if (!file) {

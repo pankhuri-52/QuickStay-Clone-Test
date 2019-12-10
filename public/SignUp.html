@@ -13,17 +13,19 @@
   <div ng-init="myVar = 'images/icon1.jpg'">
   	<center>
   	<img ng-src="{{myVar}}" ng-style="myobj">
-  	<br><br><br>
-    <input type="text" ng-model="name" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Name" required>
-    <br><br>
-    <input type="text" ng-model="number" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Phone" required>
-    <br><br>
-  	<input type="email" ng-model="email" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Email" required>
-  	<br><br>
-  	<input type="password" ng-model="password" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Password" required>
-  	<br><br>
-  	<button type="button" class="btn btn-danger" ng-style="buttoncss" ng-click="myfunc()" style="border-radius: 25px;font-size:15px;">Sign Up</button>
-  	</center>
+	  <br><br><br>
+	<form method="POST" action="/signup">
+		<input type="text" name="name" ng-model="name" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Name" required>
+		<br><br>
+		<input type="text" name="number" ng-model="number" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Phone" required>
+		<br><br>
+		<input type="email" name="email" ng-model="email" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Email" required>
+		<br><br>
+		<input type="password" name="password" ng-model="password" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Password" required>
+		<br><br>
+		<button type="submit" class="btn btn-danger" ng-style="buttoncss" ng-click="myfunc()" style="border-radius: 25px;font-size:15px;">Sign Up</button>
+	</form>
+</center>
   </div>
   <script>
   	var app=angular.module("myapp",[]);

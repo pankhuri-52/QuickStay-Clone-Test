@@ -14,14 +14,13 @@
   	<center>
   	<img ng-src="{{myVar}}" ng-style="myobj">
   	<br><br><br><br><br>
-  	<form action="/uploadFile" enctype="multipart/form-data" method="POST">
-  	<input type="text" name="projectName" ng-style="formcss" style="border-radius:30px;padding-left:33px;font-size:20px;" placeholder="Project Name" required>
-  	<br><br>
-  	<input type="file" name="myFile">
-  	<br><br>
-  	<button type="submit" class="btn btn-danger" ng-style="buttoncss" style="border-radius: 30px;font-size:20px;">Submit</button>
+  	<form method="POST" action="/uploadProject" enctype="multipart/form-data">
+		<input type="text" name="projectName" ng-style="formcss" style="border-radius:30px;padding-left:33px;font-size:20px;" placeholder="Project Name" required>
+		<br><br>
+		<input type="file" name="myFile">
+		<br><br>
+		<button type="submit" class="btn btn-danger" ng-style="buttoncss" style="border-radius: 30px;font-size:20px;">Submit</button>
   	</form> 
-  	
   	</center>
   </div>
   <script>
