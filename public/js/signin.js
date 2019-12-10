@@ -6,13 +6,14 @@ function signin(){
         email: email.value,
         password: password.value
     }
-
+    console.log(obj);
     //ajax syntax
     var xhr = new XMLHttpRequest();
     xhr.open('POST','/login');
     xhr.setRequestHeader("Content-Type","application/json");
     xhr.onload = function(){
         var res = JSON.parse(xhr.responseText);
+        console.log(res);
         if(res == 1){
             window.location = "./ProjectPage.html"
         }
