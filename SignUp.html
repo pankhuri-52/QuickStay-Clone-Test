@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signin and Signup Page</title>
+	<meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="myctrl">
+  <div ng-init="myVar = 'icon1.jpg'">
+  	<center>
+  	<img ng-src="{{myVar}}" ng-style="myobj">
+  	<br><br><br>
+    <input type="text" ng-model="name" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Name" required>
+    <br><br>
+    <input type="text" ng-model="number" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Phone" required>
+    <br><br>
+  	<input type="email" ng-model="email" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Email" required>
+  	<br><br>
+  	<input type="password" ng-model="password" ng-style="formcss" style="border-radius: 25px;padding-left:30px;font-size:16px;" placeholder="Password" required>
+  	<br><br>
+  	<button type="button" class="btn btn-danger" ng-style="buttoncss" ng-click="myfunc()" style="border-radius: 25px;font-size:15px;">Sign Up</button>
+  	</center>
+  </div>
+  <script>
+  	var app=angular.module("myapp",[]);
+  	app.controller("myctrl",function($scope){
+        $scope.myobj={
+        	"height":"8%",
+			"width":"8%",
+			"margin-top":"7%"
+        }
+        
+        $scope.formcss={
+        	"width":"350px",
+        	"height":"45px",
+        	"border":"1px solid grey"
+        }
+
+        $scope.buttoncss={
+        	"width":"180px",
+        	 "height":"45px"
+        }
+  	});
+  </script>
+</body>
+</html>
