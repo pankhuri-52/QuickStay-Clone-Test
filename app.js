@@ -97,7 +97,7 @@ app.post('/login',function(req,res){
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    var dir = 'uploads/' + req.session.fullname;
+    var dir = 'uploads/' + req.session.name;
     fs.exists(dir, function(exists){
       if(exists){
         cb(null,dir);
@@ -121,14 +121,13 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 app.post('/uploadProject', upload.single('myFile'), (req, res) => {
-  console.log(req.body);
   var file = req.file
   if (!file) {
-    alert("Please Upload A File")
+    alert("Atleast Choose A File")
   }
   else{
     alert("File Uploaded Succesfully");
-    res.sendFile(path.join(__dirname + '/public/upload.html'));
+    res.sendFile(path.join(__dirname + '/public/ProjectPage.html'));
   }
 })
 
